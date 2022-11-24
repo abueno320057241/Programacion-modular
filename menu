@@ -1,1 +1,507 @@
+//Ariel Bueno
+//Se declaran las librerías y se definen las constantes a usarse
+#include <stdio.h>
+#include <stdlib.h>
+//Estas constantes se emplearan en las funciones de las matrices
+#define N 10
+#define M 10
+//Se pone la cabecera de las funciones totales a utilizar para evitar fallas en el main
+int Triang(int x);
+int Cuad(int x);
+int Conv(int x);
+void leer_matriz(int A[N][M], int F, int C);
+void imprimir_matriz(int A[N][M],int F,int C);
+void multiplicar(int A[N][M],int B[N][M],int Re[N][M],int f1,int cf,int c2);
+int matriz_uno(int x);
+int matriz_dos(int x);
+void transpuesta(int A[3][3],int B[3][3],int espacio);
+int matriz_tres(int x);
+int factorial(int x);
+int Salario(int x);
+//En el main se genera el menú donde  se emplea el Do-while y el Switch-case
+int main(int argc, char *argv[]) {
+	//Se declaran las variables a usar en el menu
+	int selec;
+	int val;
+	do
+	{
+		printf("######################################################################################");
+		printf("\nIngrese que Desea obtener:\n1)TriAngulo.c\n2)Cuadrado.c\n3)CoNversiones\n4)Suma de matrIces\n5)Multiplicacion dE matrices\n6)FactoriaL de un numero\n7)transpuesta de una matriz 3x3\n8)Salario\n9)Salir\n");
+		//Se le solicita al usuario elegir la opcion deseada
+		scanf("%i",&selec);
+		fflush(stdin);
+		switch (selec)
+		{
+		case 1:
+			//se invoca a la funcion Triang para poder obtener sus operaciones de area y perimetro
+			val=Triang(selec);
+			break;
+		case 2:
+			//se invoca a la funcion Cuad para poder tener sus funciones de area y perimetro
+			val=Cuad(selec);
+			break;
+		case 3:
+			//se invoca a la funcion Conv para poder hacer las converciones de celcius, farenheit y kelvin
+			val=Conv(selec);
+			break;
+		case 4:
+			//se invoca a la funcion matriz_uno la cual hará una suma de matrices
+			val=matriz_uno(selec);
+			break;
+		case 5:
+			//se invoca a la funcion matriz_dos la cual hará una multiplicación de matrices
+			val=matriz_dos(selec);
+			break;	
+		case 6:
+			//se invoca a la funcion matriz_tres la cual hará la transpuesta de una matriz de 3x3
+			val=matriz_tres(selec);
+			break;	
+		case 7:
+			//se invoca a la funcion factorial la cual va a obtener el factorial de un numero 
+			val=factorial(selec);
+			break;
+		case 8:
+			//se invoca a la funcion salario el cual es el ultimo programa
+			val=Salario(selec);
+			break;	
+		case 9:
+			//
+			printf("Hasta Luego...\n");
+			break;		
+		default:
+			printf("No existe la opcion, vuelva a ingresar...\n");
+			break;
+		}
+	}while(selec!=9);
+	
+	return 0;
+}
+/* ##################################################################################################################################################################################*/
+//Se crea la funcion triangulo
+int Triang(int x) 
+{
+	//Declaramos las variables a utilizar tanto para que el usuario digite los datos como para los resultados
+	int ladoA,ladoB,ladoC;
+	int altura;
+	float resultadoArea;
+	float resultadoPerimetro;
+	//Declaramos la variable que nos va a dar pauta a el uso del Switch-case y el Do-while
+	char selec;
+	//Inicializamos el Do-while el cual se va a 
+	do
+	{
+		//Se le solicita al usuario que elija la opción con letra en mayuscula, de lo contrario mandará mensaje de error
+		printf("Ingrese que desea obtener:\n A)Area de el triangulo\nB)Perimetro de un triangulo\nC)Regresar al menu\n");
+		scanf("%c",&selec);
+		fflush(stdin);
+		switch (selec)
+		{
+			//Esta opcion da al usuario el area del triangulo
+		case 'A':
+			printf("Ingrese la base del triangulo: \n");
+			scanf("%d",&ladoA);
+			fflush(stdin);
+			printf("Ingrese la altura del triangulo: \n");
+			scanf("%d",&altura);
+			fflush(stdin);
+			resultadoArea=((ladoA*altura)/2);
+			printf("El resultado es: %f\n", resultadoArea);
+
+			break;
+			//Esta opcion da al usuario el perimetro de un triangulo 
+		case 'B':
+			printf("Ingrese el lado A del triangulo: \n");
+			scanf("%d",&ladoA);
+			fflush(stdin);
+			printf("Ingrese el lado B del triangulo: \n");
+			scanf("%d",&ladoB);
+			fflush(stdin);
+			printf("Ingrese el lado C del triangulo: \n");
+			scanf("%d",&ladoC);
+			fflush(stdin);
+			resultadoPerimetro=ladoA+ladoB+ladoC;
+			printf("El resultado es: %f\n", resultadoPerimetro);
+			break;
+			//La salida de la función
+		case 'C':
+			printf("Gracias por usar esta funcion :)\n");
+			break;
+			//En caso de que no se de una opción valida, da este mensaje de error
+		default:
+			printf("\nLa opcion no es la correcta, vuelva a intentar\n");
+			fflush(stdin);
+			break;
+		}
+	}while (selec!='C');
+	return 0;
+}
+/* ##################################################################################################################################################################################*/
+//Se crea la funcion Cuadrado
+int Cuad(int x)
+ {
+	//Declaramos las variables a utilizar tanto para que el usuario digite los datos como para los resultados
+	int ladoA,ladoB;
+	float resultadoArea;
+	float resultadoPerimetro;
+	int selec;
+	do
+	{
+		//Se le solicita al usuario que elija la opción con numero, de lo contrario mandará mensaje de error
+		printf("Ingrese que desea obtener:\n1)Area del Cuadrado\n2)Perimetro del cuadrado\n3)Area de un rectangulo\n4)Perimetro del rectangulo\n5)Regresar al menu\n");
+		scanf("%i",&selec);
+		fflush(stdin);
+		switch (selec)
+		{
+			//Este caso da el area del cuadrado
+		case 1:
+			printf("Ingrese el lado del cuadrado \n");
+			scanf("%d",&ladoA);
+			fflush(stdin);
+			resultadoArea=ladoA*ladoA;
+			printf("El resultado del Area es: %f\n", resultadoArea);
+			break;
+			//Este caso da el perimetro del cuadrado
+		case 2:
+			printf("Ingrese el lado del cuadrado \n");
+			scanf("%d",&ladoA);
+			fflush(stdin);
+			resultadoPerimetro=ladoA*4;
+			printf("El resultado del perimetro es: %f\n", resultadoPerimetro);
+			break;
+			//Este caso da el area de un rectángulo
+		case 3:
+			printf("Ingrese el lado menor del rectangulo \n");
+			scanf("%d",&ladoA);
+			printf("Ingrese el lado mayor del rectangulo \n");
+			scanf("%d",&ladoB);
+			fflush(stdin);
+			resultadoArea=ladoA*ladoB;
+			printf("El resultado del Area es: %f\n", resultadoArea);
+			break;
+			//Este caso da el perimetro de un rectángulo
+		case 4:
+			printf("Ingrese el lado menor del rectangulo\n");
+			scanf("%d",&ladoA);
+			fflush(stdin);
+			printf("Ingrese el lado mayor del rectangulo \n");
+			scanf("%d",&ladoB);
+			fflush(stdin);
+			resultadoPerimetro=((ladoA*2)+(ladoB*2));
+			printf("El resultado del perimetro es: %f\n", resultadoPerimetro);
+			break;
+			//Caso de salida
+		case 5:
+			printf("Gracias por usar esta funcion :)\n");
+			break;
+			//Mensaje de error
+		default:
+			printf("\nLa opcion no es la correcta, vuelva a intentar\n");
+			fflush(stdin);
+			break;
+		}
+	}while(selec!=5);
+	return 0;
+}
+/* ##################################################################################################################################################################################*/
+//Se crea la funcion para hacer la conversión de los diferentes grados
+int Conv(int x)
+ {
+ 	//Declaramos las variables a utilizar tanto para que el usuario digite los datos como para los resultados
+	float gradosC,gradosF,gradosK;
+	float conversionC,conversionF,conversionK;
+	int selec;
+	do
+	{
+		//Se le solicita al usuario que elija la opción con numero, de lo contrario mandará mensaje de error
+		printf("Ingrese que desea obtener:\n1)Celcius a Kelvin y Farenheit\n2)Kelvin a Celcius y Farenheit\n3)Farenheit a Celcius y kelvin\n4)Regresar al menu\n");
+		scanf("%i",&selec);
+		fflush(stdin);
+		switch(selec)
+		{
+			//Esta opcion da la conversión de grados celcius a farenheit y kelvin
+		case 1:
+			printf("Ingrese los grados \n");
+			scanf("%f",&gradosC);
+			fflush(stdin);
+			conversionF=(gradosC*(1.8))+32;
+			conversionK=gradosC+ 273.15;
+			printf("Los grados en Farenheit son: %f\n", conversionF);
+			printf("Los grados en Kelvin son: %f\n", conversionK);
+			fflush(stdin);
+			break;
+			//Esta opcion da la conversión de grados farenheit a celcius y kelvin
+		case 2:
+			printf("Ingrese los grados \n");
+			scanf("%f",&gradosF);
+			fflush(stdin);
+			conversionC=(gradosF-32)*(.555);
+			conversionK=((.555)*(gradosF-32))+273.15;
+			printf("Los grados en Kelvin son: %f\n", conversionK);
+			printf("Los grados en Celcius son: %f\n", conversionC);
+			fflush(stdin);
+			break;
+			//Esta opcion da la conversión de grados kelvin a farenheit y celcius
+		case 3:
+			printf("Ingrese los grados \n");
+			scanf("%f",&gradosK);
+			fflush(stdin);
+			conversionC=gradosK-273.15;
+			conversionF=((gradosK-273.15)*(1.8))+32;
+			printf("Los grados en Celcius son: %f\n", conversionC);
+			printf("Los grados en Farenheit son: %f\n", conversionF);
+			fflush(stdin);
+			break;
+			//Caso de salida
+		case 4:
+			printf("Gracias por usar esta funcion :)\n");
+			break;
+			//Mensaje de salida
+		default:
+			printf("\nLa opcion no es la correcta, vuelva a intentar\n");
+			fflush(stdin);
+			break;
+		}
+
+	}while(selec!=4);
+	return 0;
+}
+/* ##################################################################################################################################################################################*/
+//Se crea la funcion de matriz uno que da la suma de dos matrices
+int matriz_uno(int x)
+{
+	//Se declaran las variables así como los arreglos bidimensionales
+	int F,C,i,j;
+	int mac1[N][M],mac2[N][M];
+	int macR[N][M];
+	//Solicita al  usuario el número de Filas y de Columnas
+	printf("Ingrese el numero de filas\n");
+	scanf("%d",&F);
+	printf("ingrese el numero de las columnas\n");
+	scanf("%d",&C);
+	//Se solicita que se ingresen los datos de la primer matriz
+	printf("Primer matriz\n");
+	for(i=0;i<F;i++)
+	{
+		for (j = 0;j<C;j++)
+		{
+			printf("Ingresa el valor de [%d][%d]\n",i,j );
+			scanf("%d",&mac1[i][j]);
+			//fflush(stdin);
+		}
+	}
+	//Se solicita que se ingresen los datos de la segunda matriz
+	printf("Segunda matriz\n");
+	for(i=0;i<F;i++)
+	{
+		for (j = 0;j<C;j++)
+		{
+			printf("Ingresa el valor de [%d][%d]\n",i,j );
+			scanf("%d",&mac2[i][j]);
+			//fflush(stdin);
+		}
+	}
+	for(i=0;i<F;i++)
+	{
+		for (j = 0; j < C; j++)
+		{
+			macR[i][j]=mac1[i][j]+mac2[i][j];
+		}
+	}
+	//Se imprime la matriz resultado de la suma
+	printf("Matriz resultado\n");
+	for(i=0;i<F;i++)
+	{
+		for (j = 0; j < C; j++)
+		{
+			printf("%d\t",macR[i][j]);
+		}
+		printf("\n");
+	}
+
+
+	return 0;
+}
+/* ##################################################################################################################################################################################*/
+//La funcion leer_matriz se utilizará en las funciones matriz_dos y matriz_tres
+void leer_matriz(int A[N][M], int F, int C)
+{
+	//Al obtener los datos de entrada tanto las filas y columnas y la matriz se procede a solicitar los datos de cada elemento de la matriz
+	int i,j;
+	for(i=0;i<F;i++)
+	{
+		for (j = 0;j<C;j++)
+		{
+			printf("Ingresa el valor de [%d][%d]\n",i,j );
+			scanf("%d",&A[i][j]);
+		}
+	}
+}
+//La funcion imprimir_matriz se utilizará en las funciones matriz_dos y matriz_tres
+void imprimir_matriz(int A[N][M],int F,int C)
+{
+	//Al obtener los datos de entrada tanto las filas y columnas y la matriz se procede a Imprimir los datos de cada elemento de la matriz
+	int i,j;
+	for(i=0;i<F;i++)
+	{
+		for (j = 0; j < C; j++)
+		{
+			printf("%d\t",A[i][j]);
+		}
+		printf("\n");
+	}
+}
+//La funcion mltiplicas se utilizará en la funcion matriz_dos
+void multiplicar(int A[N][M],int B[N][M],int Re[N][M],int ij,int jk,int ik)
+{
+	int i,j,k;
+	//Limpiar matriz para que al momento de hacer la operación no tenga basura que pueda interferir
+	for(i=0;i<ij;i++)
+	{
+		for (j = 0; j < jk; j++)
+		{
+			Re[i][j]=0;
+		}
+	}
+	//Se utilizan 3 for ya que al multiplicar una funcion ij por una jk, la matriz debe de recorrer estos elementos 
+	for(i=0;i<ij;i++)
+	{
+		for (j = 0; j<jk; j++)
+		{
+			for (k = 0; k < ik; k++)
+				{
+					Re[i][k]= Re[i][k]+A[i][j]*B[j][k];
+				}	
+		}
+	}
+}
+//Se crea la funcion de matriz_dos que da la suma de dos matrices
+int matriz_dos(int x) 
+{
+	//Se declaran las variables y las matrices
+	int F,C,P,i,j;
+	int mac1[N][M],mac2[N][M];
+	int macR[N][M];
+	//Se solicitan las filas y columnas de la primera matriz
+	printf("Primer matriz\n");
+	printf("Ingrese el numero de filas\n");
+	scanf("%d",&F);
+	printf("ingrese el numero de las columnas\n");
+	scanf("%d",&C);
+	//Se invoca a la funcion "leer_matriz"
+	leer_matriz(mac1,F,C);
+	printf("Segunda matriz\n");
+	printf("Para que la multiplicaciónse efectúe, las filas de la segunda matriz deben de ser igual a las columnas de la primera\n");
+	printf("ingrese el numero de las columnas\n");
+	//ya que para la multiplicación se efectue las columnas de la primera matriz deben de coincidir con las filas de la segunda matriz solo se pide las columnas de la segunda matriz
+	scanf("%d",&P);
+	//Se invoca a la funcion "leer_matriz"
+	leer_matriz(mac2,C,P);
+	//Se invoca a la funcion "multiplicar" para multiplicar las dos matrices
+	multiplicar(mac1,mac2,macR,F,C,P);
+	printf("La matriz uno es:\n");
+	//Se invoca a la funcion "imprimir_matriz"
+	imprimir_matriz(mac1,F,C);
+	printf("La matriz dos es: \n");
+	//Se invoca a la funcion "imprimir_matriz"
+	imprimir_matriz(mac2,C,P);
+	printf("Matriz resultado\n");
+	//Se invoca a la funcion "imprimir_matriz"
+	imprimir_matriz(macR,F,P);
+	return 0;
+}
+/* ##################################################################################################################################################################################*/
+//Se crea la funcion transpuesta para usarse en la funcion "matriz_tres" que tiene como datos de entrada dos matrices 
+void transpuesta(int A[3][3],int B[3][3],int espacio)
+{
+	int i,j;
+	for(i=0;i<3;i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			//Se cambian los datos de las filas de la matriz A y se pasan a las columnas de la matriz B
+			B[j][i]=A[i][j];
+		}
+	}
+}
+//Se crea la funcion de matriz_tres que crea la transpuesta de una matriz que ingresas
+int matriz_tres(int x)
+ {
+ 	//Se declaran las variables y las matrices
+	int A[3][3],B[3][3],i,j;
+	printf("Este programa da el resultado de una matriz transpuesta de 3x3\n");
+	printf("Por favor, ingrese la matriz:\n");
+	//Se invoca a la funcion "leer_matriz"
+	leer_matriz(A,3,3);
+	//Se invoca a la funcion "transpuesta" para sacar la transpuesta de la matriz A
+	transpuesta(A,B,3);
+	printf("La matriz original es:\n");
+	//Se invoca a la funcion "imprimir_matriz"
+	imprimir_matriz(A,3,3);
+	printf("La matriz transpuesta es:\n");
+	//Se invoca a la funcion "imprimir_matriz"
+	imprimir_matriz(B,3,3);
+	return 0;
+}
+//Se crea la funcion factorial que da el factorial de algún numero ingresado
+int factorial(int x) 
+{
+	//Se crean las variables a emplearse en las funciones
+	int nFac;
+	int reFac=1;
+	int i;
+	printf("Ingrese el numero del cual quiere el factorial\n");
+	scanf("%d",&nFac);
+	//Si el numero ingresado es 0, el factorial es 1
+	if(nFac==0)
+	{
+		printf("\nEl factorial es 1");
+	}else if(nFac<0)
+		{
+			//Si el numero ingresado es menor a 0, Sale este mensaje de error y el programa termina
+			printf("\nEste programa no da el factorial de numeros negativos\n");
+		}else
+		{
+			for ( i = 1; i <= nFac; i++)
+			{
+				reFac=reFac*i;
+			}
+			printf("\nEl Valor del factorial de %d es: %d\n",nFac,reFac );
+		}
+	
+	return 0;
+}
+//Se crea la funcion final a anexar
+int Salario(int x) 
+{
+	//Se declaran las variables 
+	int horas;
+	float salario,salarioDia,salarioIva,salarioIva2,salarioMen,salarioExt;
+	//Se le pide al usuario que ingrese los datos de su sueldo y sus horas laboradas
+	printf("Ingrese su sueldo por hora:");
+	scanf("%f",&salario);
+	printf("\nIngrese sus horas laboradas al dia");
+	scanf("%d",&horas);
+	//se calcula el sueldo diario
+	salarioDia=salario*horas;
+	printf("\nSu salario diario es: %f",salarioDia);
+	//se calcula el sueldo con el 16%
+	salarioIva= salarioDia*1.16;
+	printf("\nSu salario diario con 16 de IVA es: %f",salarioIva);
+	//se calcula el sueldo sin el 12%
+	salarioIva2=salarioIva*.88;
+	printf("\nSu salario diario menos 12 de IVA es: %f",salarioIva2);
+	//salario por 20 dias
+	salarioMen=salarioIva2*20;
+	printf("\nSu salario mensual es: %f", salarioMen);
+	//si el salario es menor a 10000 se le suma el 5%
+	if(salarioMen<10000)
+	{
+		salarioExt=salarioMen*1.05;
+		printf("\nSe ganó un bono de 5 por ciento y su salario quedo en: %f",salarioExt);
+	}else
+		//si no, solo le indica que tiene un buen sueldo
+		printf("\nTiene un buen sueldo");
+	return 0;
+}
+
 
